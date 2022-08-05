@@ -5,6 +5,16 @@ const cripton = require('crypto');
 const { getAllTalkers } = require('./function/getAllTalkers');
 const { getTalkerId } = require('./function/getTalkerId');
 const { isValidEmail, isValidPassword } = require('./function/getLogin');
+const { 
+  getPost,
+  talkerName,
+  talkerAge, 
+  isTalk, 
+  isRate, 
+  setUser, 
+  dateTalk,
+} = require('./function/getPost');
+// const { request } = require('http');
 
 const app = express();
 app.use(bodyParser.json());
@@ -25,6 +35,8 @@ app.post('/login', isValidEmail, isValidPassword, (_request, response) => {
   const token = cripton.randomBytes(8).toString('hex');
   response.status(200).json({ token });
 });
+
+app.post('/talker', getPost, talkerName, talkerAge, isTalk, dateTalk, isRate, setUser);
 
 app.listen(PORT, () => {
   console.log('Online');
