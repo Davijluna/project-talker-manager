@@ -93,18 +93,34 @@ function isRate(request, response, next) {
      next();
 }
 
- async function setUser(request, response) {
+//  async function setUser(request, response) {
+//     const { name, age, talk: { watchedAt, rate } } = request.body;
+//     const getTalkers = getAllTalkers();
+//     const { id } = request.params;
+//     const filterTalke = getTalkers.filter((paletranteId) => paletranteId.id !== Number(id));
+//     const newUser = {
+//         id: filterTalke,
+//         name,
+//         age,
+//         talk: { watchedAt, rate },
+//     };
+//     filterTalke.push(newUser);
+//     await fs.writeFile('./talker.json', JSON.stringify(filterTalke));
+//     return response.status(200).json(newUser);
+// } 
+
+async function setUser(request, response) {
     const { name, age, talk: { watchedAt, rate } } = request.body;
-    const getTalkers = JSON.parse(await fs.readFile('./talker.json', 'utf8'));
-    const newUser = {
-        id: getTalkers.length + 1,
+    const getTalker = JSON.parse(await fs.readFile('./talker.json', 'utf8'));
+    const newUse = {
+        id: getTalker.length + 1,
         name,
         age,
         talk: { watchedAt, rate },
     };
-    getTalkers.push(newUser);
-    await fs.writeFile('./talker.json', JSON.stringify(getTalkers));
-    return response.status(201).json(newUser);
+    getTalker.push(newUse);
+    await fs.writeFile('./talker.json', JSON.stringify(getTalker));
+    return response.status(201).json(newUse);
 } 
 
-module.exports = { getPost, talkerName, talkerAge, isTalk, isRate, setUser, dateTalk };
+module.exports = { getPost, talkerName, talkerAge, isTalk, dateTalk, isRate, setUser };

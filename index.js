@@ -16,6 +16,16 @@ const {
 } = require('./function/getPost');
 // const { request } = require('http');
 
+const { 
+  namePut,
+  PutId, 
+  agePut, 
+  talPut, 
+  dateTalkPut, 
+  talkRatePut, 
+  setUserPut, 
+} = require('./function/PutId');
+
 const app = express();
 app.use(bodyParser.json());
 
@@ -41,3 +51,5 @@ app.post('/talker', getPost, talkerName, talkerAge, isTalk, dateTalk, isRate, se
 app.listen(PORT, () => {
   console.log('Online');
 });
+
+app.put('/talker/:id', PutId, namePut, agePut, talPut, dateTalkPut, talkRatePut, setUserPut);
