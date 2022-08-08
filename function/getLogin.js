@@ -1,11 +1,3 @@
-// function getLogin(request, response) {
-//     const { email, password } = request.body;
-//     if (email && password) {
-//         const token = cripton.randomBytes(8).toString('hex');
-//         return response.status(200).json({ token });
-//     }
-// }
-
 function isValidEmail(request, response, next) {
     const { email } = request.body;
     const validEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;

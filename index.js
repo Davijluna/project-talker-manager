@@ -14,7 +14,6 @@ const {
   setUser, 
   dateTalk,
 } = require('./function/getPost');
-// const { request } = require('http');
 
 const { 
   namePut,

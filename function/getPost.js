@@ -62,7 +62,6 @@ function isTalk(request, response, next) {
         return request.status(500).end();
     }
 }
-// const number = Number(rate) >= 1 && Number(rate) <= 5;
 
 function dateTalk(request, response, next) {
     const { talk } = request.body;
@@ -92,22 +91,6 @@ function isRate(request, response, next) {
         }
      next();
 }
-
-//  async function setUser(request, response) {
-//     const { name, age, talk: { watchedAt, rate } } = request.body;
-//     const getTalkers = getAllTalkers();
-//     const { id } = request.params;
-//     const filterTalke = getTalkers.filter((paletranteId) => paletranteId.id !== Number(id));
-//     const newUser = {
-//         id: filterTalke,
-//         name,
-//         age,
-//         talk: { watchedAt, rate },
-//     };
-//     filterTalke.push(newUser);
-//     await fs.writeFile('./talker.json', JSON.stringify(filterTalke));
-//     return response.status(200).json(newUser);
-// } 
 
 async function setUser(request, response) {
     const { name, age, talk: { watchedAt, rate } } = request.body;

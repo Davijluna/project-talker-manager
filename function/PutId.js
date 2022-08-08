@@ -1,5 +1,4 @@
 const fs = require('fs/promises');
-// const getAllTalkers = require('./getAllTalkers.js');
 
 function namePut(request, response, next) {
     try {
@@ -93,20 +92,5 @@ async function setUserPut(request, response) {
     await fs.writeFile('./talker.json', JSON.stringify(listTalker));
     return response.status(200).json(newUse);
 } 
-module.exports = { namePut, agePut, talPut, dateTalkPut, talkRatePut, setUserPut };
 
-// async function setUserPut(request, response) {
-//         const { name, age, talk: { watchedAt, rate } } = request.body;
-//         const getTalkers = getAllTalkers();
-//         const { id } = request.params;
-//         const filterTalke = getTalkers.filter((paletranteId) => paletranteId.id !== Number(id));
-//         const newUser = {
-//                 id: filterTalke,
-//                 name,
-//                 age,
-//                 talk: { watchedAt, rate },
-//             };
-//             filterTalke.push(newUser);
-//             await fs.writeFile('./talker.json', JSON.stringify(filterTalke));
-//             return response.status(200).json(newUser);
-//         } 
+module.exports = { namePut, agePut, talPut, dateTalkPut, talkRatePut, setUserPut };
