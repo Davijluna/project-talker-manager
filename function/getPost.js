@@ -1,6 +1,6 @@
 const fs = require('fs/promises');
 
-function getPost(request, response, next) {
+function validateToken(request, response, next) {
     try {
         const { authorization } = request.headers;
         if (!authorization) {
@@ -123,4 +123,4 @@ async function setUser(request, response) {
     return response.status(201).json(newUse);
 } 
 
-module.exports = { getPost, talkerName, talkerAge, isTalk, dateTalk, isRate, setUser };
+module.exports = { validateToken, talkerName, talkerAge, isTalk, dateTalk, isRate, setUser };

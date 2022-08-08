@@ -1,21 +1,6 @@
 const fs = require('fs/promises');
 // const getAllTalkers = require('./getAllTalkers.js');
 
-function PutId(request, response, next) {
-    try {
-        const { authorization } = request.headers;
-        if (!authorization) {
-            return response.status(401).json({ message: 'Token não encontrado' });
-        }
-        if (authorization.length !== 16) {
-            return response.status(401).json({ message: 'Token inválido' });
-        }
-        return next();
-    } catch (erro) {
-        return request.status(500).end();
-    }
-}
-
 function namePut(request, response, next) {
     try {
         const { name } = request.body;
@@ -108,7 +93,7 @@ async function setUserPut(request, response) {
     await fs.writeFile('./talker.json', JSON.stringify(listTalker));
     return response.status(200).json(newUse);
 } 
-module.exports = { PutId, namePut, agePut, talPut, dateTalkPut, talkRatePut, setUserPut };
+module.exports = { namePut, agePut, talPut, dateTalkPut, talkRatePut, setUserPut };
 
 // async function setUserPut(request, response) {
 //         const { name, age, talk: { watchedAt, rate } } = request.body;

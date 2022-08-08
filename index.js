@@ -6,7 +6,7 @@ const { getAllTalkers } = require('./function/getAllTalkers');
 const { getTalkerId } = require('./function/getTalkerId');
 const { isValidEmail, isValidPassword } = require('./function/getLogin');
 const { 
-  getPost,
+  validateToken,
   talkerName,
   talkerAge, 
   isTalk, 
@@ -18,13 +18,16 @@ const {
 
 const { 
   namePut,
-  PutId, 
   agePut, 
   talPut, 
   dateTalkPut, 
   talkRatePut, 
   setUserPut, 
 } = require('./function/PutId');
+
+const { deletTalk } = require('./function/deletTalkId.js');
+
+const { searchTalker } = require('./function/searchTalker');
 
 const app = express();
 app.use(bodyParser.json());
@@ -37,6 +40,8 @@ app.get('/', (_request, response) => {
   response.status(HTTP_OK_STATUS).send();
 });
 
+app.get('/talker/search', validateToken, searchTalker);
+
 app.get('/talker', getAllTalkers);
 
 app.get('/talker/:id', getTalkerId);
@@ -46,10 +51,21 @@ app.post('/login', isValidEmail, isValidPassword, (_request, response) => {
   response.status(200).json({ token });
 });
 
-app.post('/talker', getPost, talkerName, talkerAge, isTalk, dateTalk, isRate, setUser);
+app.post('/talker', validateToken, talkerName, talkerAge, isTalk, dateTalk, isRate, setUser);
 
 app.listen(PORT, () => {
   console.log('Online');
 });
 
-app.put('/talker/:id', PutId, namePut, agePut, talPut, dateTalkPut, talkRatePut, setUserPut);
+app.put(
+  '/talker/:id',
+  validateToken,
+  namePut,
+  agePut,
+  talPut,
+  dateTalkPut,
+  talkRatePut,
+  setUserPut,
+);
+
+app.delete('/talker/:id', validateToken, deletTalk);
